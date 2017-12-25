@@ -1,4 +1,4 @@
-aee = function(x, phy, mat, select = c("descendents","all") , CI = TRUE) {
+aee.tf = function(x, phy, mat, select = c("descendents","all") , CI = TRUE) {
 
   ### checking input formats
   if (!inherits(phy,"phylo"))
