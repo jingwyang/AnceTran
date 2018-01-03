@@ -1,4 +1,4 @@
-aee.tf = function(x, phy, mat, select = c("descendents","all") , CI = TRUE) {
+aeeBS = function(x, phy, mat, select = c("descendents","all") , CI = TRUE) {
 
   ### checking input formats
   if (!inherits(phy,"phylo"))
@@ -26,10 +26,10 @@ aee.tf = function(x, phy, mat, select = c("descendents","all") , CI = TRUE) {
 
   ancestral <- list()
 
-  expr <- numeric(length = n_tip + n_node) ### expression values vector initiate
+  tfbs <- numeric(length = n_tip + n_node) ### expression values vector initiate
 
-  expr[1:n_tip] <- if (is.null(names(x))) x else as.numeric(x[phy$tip.label]) ### given expression values of tips
-  expr[(n_tip+1):(n_tip+n_node)] <- NA ### ancestral nodes expression values to be estimated
+  tfbs[1:n_tip] <- if (is.null(names(x))) x else as.numeric(x[phy$tip.label]) ### given expression values of tips
+  tfbs[(n_tip+1):(n_tip+n_node)] <- NA ### ancestral nodes expression values to be estimated
 
   tr_edges <- phy$edge
 
@@ -41,24 +41,24 @@ aee.tf = function(x, phy, mat, select = c("descendents","all") , CI = TRUE) {
 
   if (0) { ### direct child nodes problematic? start
 
-    while (any (is.na(expr[(n_tip+2):(n_tip+n_node)]))) {
+    while (any (is.na(tfbs[(n_tip+2):(n_tip+n_node)]))) {
       ### looping while ancestral expression values are not computed at all internal nodes except for root
 
       for (i in (n_tip+2):(n_tip+n_node)) {
 
-        if (is.na(expr[i])) { ### node that has not been computed yet
+        if (is.na(tfbs[i])) { ### node that has not been computed yet
 
           child_nodes <- tr_edges[tr_edges[,1] == i, 2]
 
-          if (any(is.na(expr[child_nodes]))) ### bypass empty children nodes
+          if (any(is.na(tfbs[child_nodes]))) ### bypass empty children nodes
             next
 
-          mu <- mean(expr[child_nodes])
+          mu <- mean(tfbs[child_nodes])
 
           beta <- unlist(lapply(child_nodes, function(x) - mat[x,i] / mat[i,i]))
           beta0 <- mu * (1 - sum(beta))
 
-          expr[i] <- beta0 + sum(beta * expr[child_nodes])
+          tfbs[i] <- beta0 + sum(beta * tfbs[child_nodes])
         }
 
       }
@@ -69,12 +69,12 @@ aee.tf = function(x, phy, mat, select = c("descendents","all") , CI = TRUE) {
 
     child_nodes <- tr_edges[tr_edges[,1] == n_tip+1,2]
 
-    mu <- mean(expr[child_nodes])
+    mu <- mean(tfbs[child_nodes])
 
     beta <- unlist(lapply(child_nodes, function(x) - mat[x,n_tip+1] / mat[n_tip+1,n_tip+1]))
     beta0 <- mu * (1 - sum(beta))
 
-    expr[n_tip+1] <- beta0 + sum(beta * expr[child_nodes])
+    tfbs[n_tip+1] <- beta0 + sum(beta * tfbs[child_nodes])
 
   } ### problematic? end
 
@@ -87,12 +87,12 @@ aee.tf = function(x, phy, mat, select = c("descendents","all") , CI = TRUE) {
 
       child_tips <- child_nodes[child_nodes < (n_tip+1)] ### only tips
 
-      mu <- mean(expr[child_tips])
+      mu <- mean(tfbs[child_tips])
 
       beta <- unlist(lapply(child_tips, function(x) - mat[x,i] / mat[i,i]))
       beta0 <- mu * (1 - sum(beta))
 
-      expr[i] <- beta0 + sum(beta * expr[child_tips])
+      tfbs[i] <- beta0 + sum(beta * tfbs[child_tips])
 
     }
 
@@ -102,18 +102,18 @@ aee.tf = function(x, phy, mat, select = c("descendents","all") , CI = TRUE) {
 
     for (i in (n_tip+1):(n_tip+n_node)) {
 
-      mu <- mean(expr[all_tips])
+      mu <- mean(tfbs[all_tips])
 
       beta <- unlist(lapply(all_tips, function(x) - mat[x,i] / mat[i,i]))
       beta0 <- mu * (1 - sum(beta))
 
-      expr[i] <- beta0 + sum(beta * expr[all_tips])
+      tfbs[i] <- beta0 + sum(beta * tfbs[all_tips])
 
     }
 
   }
 
-  ancestral$est <- expr[(n_tip+1):(n_tip+n_node)]
+  ancestral$est <- tfbs[(n_tip+1):(n_tip+n_node)]
   ### if calculating confidence interval
 
   if (CI) {
@@ -123,7 +123,7 @@ aee.tf = function(x, phy, mat, select = c("descendents","all") , CI = TRUE) {
     for (i in (n_tip+1):(n_tip+n_node)) { ### for every node
 
       tmp = sqrt(1 / mat[i,i]) * qnorm(0.025)
-      ci95[(i-n_tip),] = c(expr[i] + tmp, expr[i] - tmp)
+      ci95[(i-n_tip),] = c(tfbs[i] + tmp, tfbs[i] - tmp)
 
     }
 

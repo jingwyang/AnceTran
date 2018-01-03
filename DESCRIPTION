@@ -10,7 +10,7 @@ Maintainer: The package maintainer <yourself@somewhere.net>
 Description: AnceTran is an R package that can perform comparative TF-binding evolution analysis based on the ChIP-seq data, 
     which includes optimized input formatting, normalization, pairwise TF-binding distance estimation, 
     TF-binding character tree building and ancestral TF-binding state inference.
-License: Gpl-3
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports: ape,
