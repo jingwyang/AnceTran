@@ -1,3 +1,28 @@
+#'
+#' @title TF-binding score table from a taxaTF class
+#'
+#' @name bstabTF
+#'
+#' @description Generate an TF binding score table from a taxaTF class
+#'
+#' @param objects a vector of objects of class \code{taxonTF} or an object of class \code{taxaTF}
+#' @param taxa one single character or a vector of characters specifying main taxa to be included in
+#' the TF binding score table.
+#' If one single character "all" is given,
+#' all the taxa included in the \code{taxaTF} will be matched and included ("all" by default).
+#' @param tf one single character or a vector of characters specifying transcription factor(s) to be included in
+#' the TF binding score table.
+#' If one single character "all" is given,
+#' all the transcription factor included in the \code{taxaTF} will be matched and included ("all" by default).
+#' @param rowindex a vector of numbers corresponded to indices of selecting rows
+#' @param filtering a logical specifying whether to exclude genes with binding score equal to 0 in all taxaon and tfs.
+#' @param normalize a logical specifying whether to perform quantile normalization on sample-specific biases.
+#' @param logrithm a logical specifying whether to apply TF binding score log2 tranformation (TRUE by default).
+#' @return An TF binding score table: column corresponds to median binding score value of all biological samples
+#' within one species_TF group; row corresponds to othologous genes
+#'
+#' @export
+
 bstabTF = function (objects = NULL, taxa = "all", tf = "all",
                      rowindex = NULL, filtering = TRUE, normalize = TRUE, logrithm = TRUE)
 

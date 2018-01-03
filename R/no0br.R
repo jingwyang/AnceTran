@@ -1,3 +1,18 @@
+#'
+#' @title No zero branch length
+#'
+#' @name no0br
+#' @rdname no0br
+#'
+#' @description This function does a small tweak on the tree to remove zero-length branch
+#' between root and MRCA of the ingroup, and replace any negative branch lengths
+#' with a small length
+#'
+#' @param phy an rooted tree
+#'
+#' @return returns the tree without zero-length or negative-length branch
+#'
+#' @export
 no0br = function(phy) {
 
   if (!inherits(phy, "phylo"))

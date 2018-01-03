@@ -1,3 +1,35 @@
+#' @title constrct a taxaTF object.
+#'
+#' @description  \code{TFconstrct} is a constructor function for \code{taxaTF} objects.
+#' This fuction takes in a binding score file
+#' and constructs a \code{taxaTF} object from which user can extract information
+#' for display or for further analysis.
+#' @name TEconstruct
+#'
+#' @rdname TEconstruct
+#'
+#' @param BSFile a text file contains raw TF binding score values.
+#' Row names correspond with gene names,
+#' and colum names correspond with species and trasncription factor names.
+#' @param taxa one single string or a vector of strings specifying main taxa selected for
+#' constructing \code{taxaTF} object.
+#' If one single string "all" is given,
+#' all the taxa in the row names will be matched and selected ("all" by default).
+#' @param tf one single string or a vector of strings sepcifying transcription factor(s) selected for
+#' constructing \code{taxaTF} object.
+#' If one single string "all" is given,
+#' all the transcription factor(s) in the row names will be matched and selected ("all" by default).
+#' @param verbose a logical specifying whether to print more information on the screen
+#' while constructing \code{taxaTF} objects (FALSE by default).
+#'
+#'@return returns an object of class \code{TaxaTF} (S3 class, a list of \code{taxonTF} objects).
+#'
+#' @examples
+#'
+#' taxa.objects = TFconstruct(BSFile = system.file('extdata/CEBPA_meanIntensity_all_Mouse.txt', package = 'AnceTran'),
+#'    taxa = "all", tf = "all", verbose = FALSE)
+#'
+#' @export
 TFconstruct = function(BSFile=NULL, taxa="all", tf="all", verbose=FALSE) {
 
   # check file handle

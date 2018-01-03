@@ -1,3 +1,22 @@
+#'
+#' @title Ancestral TF-binding State Inference
+#'
+#' @name aeeBS
+#' @rdname aeeBS
+#'
+#' @description This function is to inference ancestral TF binding state and related statistical uncertainty
+#'
+#' @param x a vector of known TF binding score values of a gene, preferably log2-transformed TF binding scores
+#' @param phy a phylogenetic tree in the form of object "phylo"
+#' @param mat a matrix generated from "varMatInv" function
+#' @param select indicate if descendents of the node or all tips should be used
+#' @param CI a logical specifying whether to return the 95% confidence intervals
+#' of the estimated ancestral TF binding scores
+#'
+#' @return returns a list containing estimated ancestral TF binding states
+#' as well as other requested parameters
+#'
+#' @export
 aeeBS = function(x, phy, mat, select = c("descendents","all") , CI = TRUE) {
 
   ### checking input formats
