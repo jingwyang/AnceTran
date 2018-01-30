@@ -3,7 +3,6 @@
 #' @name aee
 #' @rdname aee
 #'
-#'
 #' @description This function is to inference ancestral transcriptome state
 #' and related statistical uncertainty based on RNA-seq expression data
 #' or ChIP-seq TF-binding data.
