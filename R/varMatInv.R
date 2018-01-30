@@ -1,24 +1,23 @@
-#'
-#' @title Generate an inversed variance-covariance matrix from TF-binding profiles across species
+#' @title Generate an inversed variance-covariance matrix from transcriptome profiles across species
 #'
 #' @name varMatInv
 #' @rdname varMatInv
 #'
-#' @description This function generate an inversed variance-covariance matrix from TF-binding profiles
-#' of one-to-one orthologous genes across species
+#' @description This function generate an inversed variance-covariance matrix from expression
+#' or TF-binding profiles of one-to-one orthologous genes across species
 #'
 #' @param objects a vector of objects of class \code{taxonTF} or an object of class \code{taxaTF}
-#' @param phy an rooted TF-binding character tree
+#' @param phy an rooted expression or TF-binding character tree
 #' @param taxa one single character or a vector of characters sepcifying taxa to generate
 #' an inversed variance-covariance matrix.
 #' If one single character "all" is given,
 #' all the taxa included in the \code{taxaTF} will be matched and included ("all" by default).
-#' @param tf one single character specifying transcription factor to be included in generating
+#' @param subtaxa one single character specifying sub taxa to be included in generating
 #' an inversed variance-covariance matrix
 #'
 #' @return returns an inversed variance-covariance matrix
 #' @export
-varMatInv = function(dismat , tfbs_table, phy, taxa = "all", tf) {
+varMatInv = function(dismat , tran_table, phy, taxa = "all", tf) {
 
   if (!inherits(phy, "phylo"))
     stop(paste0(date(),"tree input is not of class \"phylo\""))
@@ -46,7 +45,7 @@ varMatInv = function(dismat , tfbs_table, phy, taxa = "all", tf) {
 
   ### stationary variance
   #exp_table <- exptabTE(objects, taxa = "all", subtaxa = subtaxa, logrithm = T)
-  stat_var <- mean(apply(tfbs_table, 2, var))
+  stat_var <- mean(apply(tran_table, 2, var))
   var_corrmat <- stat_var * corrmat
 
   solve(var_corrmat)

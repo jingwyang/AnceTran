@@ -1,4 +1,3 @@
-#'
 #' @title No zero branch length
 #'
 #' @name no0br
@@ -39,7 +38,7 @@ no0br = function(phy) {
 
   phy$edge.length[1] <- tmp1[1]
   phy$edge.length[length(phy$edge.length)] <-
-    phy$edge.length[length(phy$edge.length)] - phy$edge.length[1]
+  phy$edge.length[length(phy$edge.length)] - phy$edge.length[1]
 
   phy
 

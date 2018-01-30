@@ -2,12 +2,12 @@
 % Please edit documentation in R/NJ.R
 \name{NJ}
 \alias{NJ}
-\title{Neighbor-joining}
+\title{Neighbor-joining tree}
 \usage{
 NJ(x)
 }
 \arguments{
-\item{x}{a distance matrix shows the sOU distances for each paried specis}
+\item{x}{a distance matrix shows the transcriptome distances for each paried species}
 }
 \description{
 The famous neighbor-joining tree estimation function from Saitou and Nei (1987).

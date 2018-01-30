@@ -1,7 +1,7 @@
 Package: AnceTran
 Type: Package
 Title: the R package for analyzing TF-binding evolution based on ChIP-seq data
-Version: 1.0.0
+Version: 2.0.0
 Depends: R (>= 3.0.0)
 Author@R: c(
     person("Jingw", "Yang", email = "jingwyang.fudan@gmail.com", role = c("cre","aut"),
@@ -14,5 +14,9 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports: ape,
-    phytools
+    phytools,
+    limma
 RoxygenNote: 6.0.1
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr

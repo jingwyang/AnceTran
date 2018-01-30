@@ -1,23 +1,24 @@
+#' @title Ancestral Transcriptome State Inference
 #'
-#' @title Ancestral TF-binding State Inference
+#' @name aee
+#' @rdname aee
 #'
-#' @name aeeBS
-#' @rdname aeeBS
+#' @description This function is to inference ancestral transcriptome state
+#' and related statistical uncertainty based on RNA-seq expression data
+#' or ChIP-seq TF-binding data.
 #'
-#' @description This function is to inference ancestral TF binding state and related statistical uncertainty
-#'
-#' @param x a vector of known TF binding score values of a gene, preferably log2-transformed TF binding scores
+#' @param x a vector of known expression or TF binding score values of genes, preferably log2-transformed
 #' @param phy a phylogenetic tree in the form of object "phylo"
 #' @param mat a matrix generated from "varMatInv" function
 #' @param select indicate if descendents of the node or all tips should be used
 #' @param CI a logical specifying whether to return the 95% confidence intervals
-#' of the estimated ancestral TF binding scores
+#' of the estimated ancestral transcriptome value.
 #'
-#' @return returns a list containing estimated ancestral TF binding states
+#' @return returns a list containing estimated ancestral transcriptome states
 #' as well as other requested parameters
 #'
 #' @export
-aeeBS = function(x, phy, mat, select = c("descendents","all") , CI = TRUE) {
+aee = function(x, phy, mat, select = c("descendents","all") , CI = TRUE) {
 
   ### checking input formats
   if (!inherits(phy,"phylo"))
@@ -45,10 +46,10 @@ aeeBS = function(x, phy, mat, select = c("descendents","all") , CI = TRUE) {
 
   ancestral <- list()
 
-  tfbs <- numeric(length = n_tip + n_node) ### expression values vector initiate
+  tran <- numeric(length = n_tip + n_node) ### expression values vector initiate
 
-  tfbs[1:n_tip] <- if (is.null(names(x))) x else as.numeric(x[phy$tip.label]) ### given expression values of tips
-  tfbs[(n_tip+1):(n_tip+n_node)] <- NA ### ancestral nodes expression values to be estimated
+  tran[1:n_tip] <- if (is.null(names(x))) x else as.numeric(x[phy$tip.label]) ### given expression values of tips
+  tran[(n_tip+1):(n_tip+n_node)] <- NA ### ancestral nodes expression values to be estimated
 
   tr_edges <- phy$edge
 
@@ -60,24 +61,24 @@ aeeBS = function(x, phy, mat, select = c("descendents","all") , CI = TRUE) {
 
   if (0) { ### direct child nodes problematic? start
 
-    while (any (is.na(tfbs[(n_tip+2):(n_tip+n_node)]))) {
+    while (any (is.na(tran[(n_tip+2):(n_tip+n_node)]))) {
       ### looping while ancestral expression values are not computed at all internal nodes except for root
 
       for (i in (n_tip+2):(n_tip+n_node)) {
 
-        if (is.na(tfbs[i])) { ### node that has not been computed yet
+        if (is.na(tran[i])) { ### node that has not been computed yet
 
           child_nodes <- tr_edges[tr_edges[,1] == i, 2]
 
-          if (any(is.na(tfbs[child_nodes]))) ### bypass empty children nodes
+          if (any(is.na(tran[child_nodes]))) ### bypass empty children nodes
             next
 
-          mu <- mean(tfbs[child_nodes])
+          mu <- mean(tran[child_nodes])
 
           beta <- unlist(lapply(child_nodes, function(x) - mat[x,i] / mat[i,i]))
           beta0 <- mu * (1 - sum(beta))
 
-          tfbs[i] <- beta0 + sum(beta * tfbs[child_nodes])
+          tran[i] <- beta0 + sum(beta * tran[child_nodes])
         }
 
       }
@@ -88,12 +89,12 @@ aeeBS = function(x, phy, mat, select = c("descendents","all") , CI = TRUE) {
 
     child_nodes <- tr_edges[tr_edges[,1] == n_tip+1,2]
 
-    mu <- mean(tfbs[child_nodes])
+    mu <- mean(tran[child_nodes])
 
     beta <- unlist(lapply(child_nodes, function(x) - mat[x,n_tip+1] / mat[n_tip+1,n_tip+1]))
     beta0 <- mu * (1 - sum(beta))
 
-    tfbs[n_tip+1] <- beta0 + sum(beta * tfbs[child_nodes])
+    tran[n_tip+1] <- beta0 + sum(beta * tran[child_nodes])
 
   } ### problematic? end
 
@@ -106,12 +107,12 @@ aeeBS = function(x, phy, mat, select = c("descendents","all") , CI = TRUE) {
 
       child_tips <- child_nodes[child_nodes < (n_tip+1)] ### only tips
 
-      mu <- mean(tfbs[child_tips])
+      mu <- mean(tran[child_tips])
 
       beta <- unlist(lapply(child_tips, function(x) - mat[x,i] / mat[i,i]))
       beta0 <- mu * (1 - sum(beta))
 
-      tfbs[i] <- beta0 + sum(beta * tfbs[child_tips])
+      tran[i] <- beta0 + sum(beta * tran[child_tips])
 
     }
 
@@ -121,18 +122,18 @@ aeeBS = function(x, phy, mat, select = c("descendents","all") , CI = TRUE) {
 
     for (i in (n_tip+1):(n_tip+n_node)) {
 
-      mu <- mean(tfbs[all_tips])
+      mu <- mean(tran[all_tips])
 
       beta <- unlist(lapply(all_tips, function(x) - mat[x,i] / mat[i,i]))
       beta0 <- mu * (1 - sum(beta))
 
-      tfbs[i] <- beta0 + sum(beta * tfbs[all_tips])
+      tran[i] <- beta0 + sum(beta * tran[all_tips])
 
     }
 
   }
 
-  ancestral$est <- tfbs[(n_tip+1):(n_tip+n_node)]
+  ancestral$est <- tran[(n_tip+1):(n_tip+n_node)]
   ### if calculating confidence interval
 
   if (CI) {
@@ -142,7 +143,7 @@ aeeBS = function(x, phy, mat, select = c("descendents","all") , CI = TRUE) {
     for (i in (n_tip+1):(n_tip+n_node)) { ### for every node
 
       tmp = sqrt(1 / mat[i,i]) * qnorm(0.025)
-      ci95[(i-n_tip),] = c(tfbs[i] + tmp, tfbs[i] - tmp)
+      ci95[(i-n_tip),] = c(tran[i] + tmp, tran[i] - tmp)
 
     }
 

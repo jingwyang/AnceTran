@@ -1,18 +1,18 @@
-#' @title constrct a taxaTF object.
+#' @title Constrct a taxaTF object
 #'
-#' @description  \code{TFconstrct} is a constructor function for \code{taxaTF} objects.
+#' @description  \code{TFconstruct} is a constructor function for \code{taxaTF} objects.
 #' This fuction takes in a binding score file
 #' and constructs a \code{taxaTF} object from which user can extract information
 #' for display or for further analysis.
-#' @name TEconstruct
+#' @name tTFConstruct
 #'
-#' @rdname TEconstruct
+#' @rdname tTFConstruct
 #'
 #' @param BSFile a text file contains raw TF binding score values.
 #' Row names correspond with gene names,
 #' and colum names correspond with species and trasncription factor names.
-#' @param taxa one single string or a vector of strings specifying main taxa selected for
-#' constructing \code{taxaTF} object.
+#' @param taxa one single string or a vector of strings specifying main taxa, such like species
+#' or celll line types, selected for constructing \code{taxaTF} object.
 #' If one single string "all" is given,
 #' all the taxa in the row names will be matched and selected ("all" by default).
 #' @param tf one single string or a vector of strings sepcifying transcription factor(s) selected for
@@ -22,7 +22,7 @@
 #' @param verbose a logical specifying whether to print more information on the screen
 #' while constructing \code{taxaTF} objects (FALSE by default).
 #'
-#'@return returns an object of class \code{TaxaTF} (S3 class, a list of \code{taxonTF} objects).
+#' @return returns an object of class \code{TaxaTF} (S3 class, a list of \code{taxonTF} objects).
 #'
 #' @examples
 #'
@@ -30,7 +30,7 @@
 #'    taxa = "all", tf = "all", verbose = FALSE)
 #'
 #' @export
-TFconstruct = function(BSFile=NULL, taxa="all", tf="all", verbose=FALSE) {
+tTFConstruct = function(BSFile=NULL, taxa="all", tf="all", verbose=FALSE) {
 
   # check file handle
   if(is.null(BSFile)){

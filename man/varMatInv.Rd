@@ -2,27 +2,27 @@
 % Please edit documentation in R/varMatInv.R
 \name{varMatInv}
 \alias{varMatInv}
-\title{Generate an inversed variance-covariance matrix from TF-binding profiles across species}
+\title{Generate an inversed variance-covariance matrix from transcriptome profiles across species}
 \usage{
-varMatInv(dismat, tfbs_table, phy, taxa = "all", tf)
+varMatInv(dismat, tran_table, phy, taxa = "all", tf)
 }
 \arguments{
-\item{phy}{an rooted TF-binding character tree}
+\item{phy}{an rooted expression or TF-binding character tree}
 
 \item{taxa}{one single character or a vector of characters sepcifying taxa to generate
 an inversed variance-covariance matrix.
 If one single character "all" is given,
 all the taxa included in the \code{taxaTF} will be matched and included ("all" by default).}
 
-\item{tf}{one single character specifying transcription factor to be included in generating
-an inversed variance-covariance matrix}
-
 \item{objects}{a vector of objects of class \code{taxonTF} or an object of class \code{taxaTF}}
+
+\item{subtaxa}{one single character specifying sub taxa to be included in generating
+an inversed variance-covariance matrix}
 }
 \value{
 returns an inversed variance-covariance matrix
 }
 \description{
-This function generate an inversed variance-covariance matrix from TF-binding profiles
-of one-to-one orthologous genes across species
+This function generate an inversed variance-covariance matrix from expression
+or TF-binding profiles of one-to-one orthologous genes across species
 }
