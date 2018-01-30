@@ -1,18 +1,18 @@
 ---
 title: "README"
 author: "Jingw Yang"
-date: "2017/12/24"
+date: "2018/01/30"
 output: md_document
 ---
 
 # AnceTran
 
-*AnceTran* is an *R* package that performs analyses of TF-binding evolution
-from *ChIP-seq* data, including optimized input formatting, normalization
-and pair-wise distance evaluation, TF-binding character tree construction and ancestral
-TF binding state inference
+*AnceTran* is an *R* package that performs analyses of transcriptome evolution
+based on *RNA-seq* expression data or *ChIP-seq* TF binding data, including optimized input formatting, normalization
+and pair-wise distance evaluation, transcriptome character tree construction and ancestral
+transcriptome state inference.
 
-*AnceTran* package is under active developing, current developing version 1.0 is available at <https://github.com/jingwyang/AnceTran>.
+*AnceTran* package is under active developing, current developing version 2.0 is available at <https://github.com/jingwyang/AnceTran>.
 
 A convenient way to install package from github is through *devtools* package:
 
