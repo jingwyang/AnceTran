@@ -24,5 +24,5 @@ devtools::install_github("jingwyang/AnceTran")
 Users can also download *AnceTran* package and install locally through:
 
 ```{r, eval=FALSE}
-install.packages("filePath/AnceTran.1.0.tar.gz", repos = NUll, type = "source")
+install.packages("filePath/AnceTran.2.0.tar.gz", repos = NUll, type = "source")
 ```
