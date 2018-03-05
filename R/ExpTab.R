@@ -18,7 +18,6 @@
 
 #' @return An expression level table: column corresponds to median expression value of all biological samples
 #' within one taxa_subtaxa group; row corresponds to othologous genes
-#'
 #' @export
 Exptab = function (objects = NULL, taxa = "all", subtaxa = "all",
                      rowindex = NULL, logrithm = TRUE){

@@ -26,9 +26,9 @@
 #'
 #' @examples
 #'
-#' taxa.objects = TFconstruct(BSFile = system.file('extdata/CEBPA_meanIntensity_all_Mouse.txt', package = 'AnceTran'),
+#' taxa.objects = tTFConstruct(BSFile =
+#'    system.file('extdata/HNF4A_meanIntensity_4Mouse.txt', package = 'AnceTran'),
 #'    taxa = "all", tf = "all", verbose = FALSE)
-#'
 #' @export
 tTFConstruct = function(BSFile=NULL, taxa="all", tf="all", verbose=FALSE) {
 

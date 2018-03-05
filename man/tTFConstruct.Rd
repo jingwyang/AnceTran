@@ -35,7 +35,7 @@ for display or for further analysis.
 }
 \examples{
 
-taxa.objects = TFconstruct(BSFile = system.file('extdata/CEBPA_meanIntensity_all_Mouse.txt', package = 'AnceTran'),
+taxa.objects = tTFConstruct(BSFile =
+   system.file('extdata/HNF4A_meanIntensity_all_Mouse.txt', package = 'AnceTran'),
    taxa = "all", tf = "all", verbose = FALSE)
-
 }

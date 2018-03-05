@@ -3,8 +3,8 @@ Type: Package
 Title: the R package for analyzing TF-binding evolution based on ChIP-seq data
 Version: 2.0.0
 Depends: R (>= 3.0.0)
-Author@R: c(
-    person("Jingw", "Yang", email = "jingwyang.fudan@gmail.com", role = c("cre","aut"),
+Authors@R: c(
+    person("Jingw", "Yang", email = "jingwyang.fudan@gmail.com", role = c("cre","aut")),
     person("Hang","Ruan", email = "hang.ruan@hotmail.com", role = "ctb"))
 Maintainer: Jingwen Yang <jingwyang.fudan@gmail.com>
 Description: AnceTran is an R package that can perform comparative TF-binding evolution analysis based on the ChIP-seq data, 

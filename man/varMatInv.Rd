@@ -7,16 +7,18 @@
 varMatInv(dismat, tran_table, phy, taxa = "all", tf)
 }
 \arguments{
-\item{phy}{an rooted expression or TF-binding character tree}
+\item{dismat}{wait for update}
+
+\item{tran_table}{wait for update}
+
+\item{phy}{wait for update}
 
 \item{taxa}{one single character or a vector of characters sepcifying taxa to generate
 an inversed variance-covariance matrix.
 If one single character "all" is given,
 all the taxa included in the \code{taxaTF} will be matched and included ("all" by default).}
 
-\item{objects}{a vector of objects of class \code{taxonTF} or an object of class \code{taxaTF}}
-
-\item{subtaxa}{one single character specifying sub taxa to be included in generating
+\item{tf}{one single character specifying sub taxa to be included in generating
 an inversed variance-covariance matrix}
 }
 \value{

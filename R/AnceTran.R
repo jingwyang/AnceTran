@@ -12,7 +12,6 @@
 #' @import ape
 #' @import phytools
 #' @import limma
-#'
 #' @author Jingw Yang (jingwyang.fudan@gmail.com);  Hang Ruan (hang.ruan@hotmail.com).
 
 NULL

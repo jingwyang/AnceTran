@@ -48,8 +48,8 @@ for display or for further analysis.
 }
 \examples{
 
-taxa.objects = tExpConstruct(readCountsFP = system.file('extdata/tetraexp.read.counts.raw.txt', package = 'TreeExp'),
-   geneInfoFP = system.file('extdata/tetraexp.length.ortholog.txt', package = 'TreeExp'),
+taxa.objects = tExpConstruct(
+   readCountsFP = system.file('extdata/tetraexp.read.counts.raw.txt', package = 'AnceTran'),
+   geneInfoFP = system.file('extdata/tetraexp.length.ortholog.txt', package = 'AnceTran'),
    taxa = "all", subtaxa = c("Brain", "Cerebellum"), normalize = "TPM")
-
 }

@@ -26,6 +26,9 @@
 #' Jensen-Shannon divergence, the Brownian distance, and so on.
 #' @param expMat a expression value matrix: colum correspnds to expression values;
 #' row correspnds to othologous genes
+#' @param reads.count wait for update
+#' @param gene_length wait for update
+#' @param omega wait for update
 #' @references
 #' Chen H, He X. 2016. The Convergent Cancer Evolution toward a Single Cellular Destination.
 #' Mol Biol Evol 33:4-12
@@ -46,7 +49,7 @@ Expdist.nbdln = function (reads.count = NULL, gene_length = NULL, omega = NULL) 
   object_n <- ncol(reads.count)
   gene_n <- nrow(reads.count)
 
-  dis.mat <- matrix(0, nr = object_n, nc = object_n)
+  dis.mat <- matrix(0, nrow = object_n, ncol = object_n)
 
   rk_var <- rep(0, object_n)
 
@@ -142,7 +145,7 @@ Expdist.u = function (reads.count = NULL, gene_length = NULL) {
   object_n <- ncol(reads.count)
   gene_n <- nrow(reads.count)
 
-  dis.mat <- matrix(0, nr = object_n, nc = object_n)
+  dis.mat <- matrix(0, nrow = object_n, ncol = object_n)
 
   rk_var <- rep(0, object_n)
 
@@ -230,7 +233,7 @@ Expdist.jsd = function (expMat = NULL) {
   object_n <- ncol(expMat)
   gene_n <- nrow(expMat)
 
-  dis.mat <- matrix(0, nr = object_n, nc = object_n)
+  dis.mat <- matrix(0, nrow = object_n, ncol = object_n)
 
   for (i in 1:(object_n-1)) {
 
@@ -265,7 +268,7 @@ Expdist.pea = function (expMat = NULL) {
   object_n <- ncol(expMat)
   gene_n <- nrow(expMat)
 
-  dis.mat <- matrix(0, nr = object_n, nc = object_n)
+  dis.mat <- matrix(0, nrow = object_n, ncol = object_n)
 
 
   for (i in 1:(object_n-1)) {
@@ -293,7 +296,7 @@ Expdist.spe = function (expMat = NULL) {
   object_n <- ncol(expMat)
   gene_n <- nrow(expMat)
 
-  dis.mat <- matrix(0, nr = object_n, nc = object_n)
+  dis.mat <- matrix(0, nrow = object_n, ncol = object_n)
 
 
   for (i in 1:(object_n-1)) {
@@ -323,7 +326,7 @@ Expdist.euc = function (expMat = NULL) {
   object_n <- ncol(expMat)
   gene_n <- nrow(expMat)
 
-  dis.mat <- matrix(0, nr = object_n, nc = object_n)
+  dis.mat <- matrix(0, nrow = object_n, ncol = object_n)
 
   for (i in 1:(object_n-1)) {
 
@@ -348,7 +351,7 @@ Expdist.cos = function (expMat = NULL) {
   object_n <- ncol(expMat)
   gene_n <- nrow(expMat)
 
-  dis.mat <- matrix(0, nr = object_n, nc = object_n)
+  dis.mat <- matrix(0, nrow = object_n, ncol = object_n)
 
 
   for (i in 1:(object_n-1)) {
@@ -374,7 +377,7 @@ Expdist.tani = function (expMat = NULL) {
   object_n <- ncol(expMat)
   gene_n <- nrow(expMat)
 
-  dis.mat <- matrix(0, nr = object_n, nc = object_n)
+  dis.mat <- matrix(0, nrow = object_n, ncol = object_n)
 
 
   for (i in 1:(object_n-1)) {
@@ -401,7 +404,7 @@ Expdist.jac = function (expMat = NULL) {
   object_n <- ncol(expMat)
   gene_n <- nrow(expMat)
 
-  dis.mat <- matrix(0, nr = object_n, nc = object_n)
+  dis.mat <- matrix(0, nrow = object_n, ncol = object_n)
 
 
   for (i in 1:(object_n-1)) {
@@ -428,7 +431,7 @@ Expdist.ced = function (expMat = NULL) {
   object_n <- ncol(expMat)
   gene_n <- nrow(expMat)
 
-  dis.mat <- matrix(0, nr = object_n, nc = object_n)
+  dis.mat <- matrix(0, nrow = object_n, ncol = object_n)
 
 
   for (i in 1:(object_n-1)) {
@@ -456,7 +459,7 @@ Expdist.sou = function (expMat = NULL) {
   object_n <- ncol(expMat)
   #gene_n <- nrow(expMat)
 
-  dis.mat <- matrix(0, nr = object_n, nc = object_n)
+  dis.mat <- matrix(0, nrow = object_n, ncol = object_n)
 
 
   for (i in 1:(object_n-1)) {

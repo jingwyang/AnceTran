@@ -34,10 +34,10 @@
 #'
 #' @examples
 #'
-#' taxa.objects = tExpConstruct(readCountsFP = system.file('extdata/tetraexp.read.counts.raw.txt', package = 'TreeExp'),
-#'    geneInfoFP = system.file('extdata/tetraexp.length.ortholog.txt', package = 'TreeExp'),
+#' taxa.objects = tExpConstruct(
+#'    readCountsFP = system.file('extdata/tetraexp.read.counts.raw.txt', package = 'AnceTran'),
+#'    geneInfoFP = system.file('extdata/tetraexp.length.ortholog.txt', package = 'AnceTran'),
 #'    taxa = "all", subtaxa = c("Brain", "Cerebellum"), normalize = "TPM")
-#'
 #' @export
 tExpConstruct = function(readCountsFP=NULL, geneInfoFP=NULL, taxa="all", subtaxa="all",
                        normalize=c("TPM", "RPKM", "CPM"), rmOut=FALSE, verbose=FALSE) {
