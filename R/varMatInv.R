@@ -6,7 +6,8 @@
 #' @description This function generate an inversed variance-covariance matrix from expression
 #' or TF-binding profiles of one-to-one orthologous genes across species
 #' @param dismat a distance matrix for paired transcriptome profiles
-#' @param tran_table transcriptome value matrix
+#' @param tran_table transcriptome value matrix extracted from objects of class
+#' \code{taxaTF} or class \code{taxaExp}
 #' @param phy an rooted transcriptome character tree
 #' @return returns an inversed variance-covariance matrix
 #' @export

@@ -26,9 +26,6 @@
 #' Jensen-Shannon divergence, the Brownian distance, and so on.
 #' @param expMat a expression value matrix: colum correspnds to expression values;
 #' row correspnds to othologous genes
-#' @param reads.count wait for update
-#' @param gene_length wait for update
-#' @param omega wait for update
 #' @references
 #' Chen H, He X. 2016. The Convergent Cancer Evolution toward a Single Cellular Destination.
 #' Mol Biol Evol 33:4-12
@@ -43,7 +40,6 @@
 #' Genome Biol 16:287.
 #'
 #' Distance based on negative bio distribution and log normal model
-#' @export
 Expdist.nbdln = function (reads.count = NULL, gene_length = NULL, omega = NULL) {
 
   object_n <- ncol(reads.count)

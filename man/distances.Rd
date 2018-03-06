@@ -42,12 +42,6 @@ Expdist.sou(expMat = NULL)
 TFdist.sou(bsMat = NULL)
 }
 \arguments{
-\item{reads.count}{wait for update}
-
-\item{gene_length}{wait for update}
-
-\item{omega}{wait for update}
-
 \item{expMat}{a expression value matrix: colum correspnds to expression values;
 row correspnds to othologous genes}
 

@@ -4,22 +4,15 @@
 \alias{varMatInv}
 \title{Generate an inversed variance-covariance matrix from transcriptome profiles across species}
 \usage{
-varMatInv(dismat, tran_table, phy, taxa = "all", tf)
+varMatInv(dismat, tran_table, phy)
 }
 \arguments{
-\item{dismat}{wait for update}
+\item{dismat}{a distance matrix for paired transcriptome profiles}
 
-\item{tran_table}{wait for update}
+\item{tran_table}{transcriptome value matrix extracted from objects of class
+\code{taxaTF} or class \code{taxaExp}}
 
-\item{phy}{wait for update}
-
-\item{taxa}{one single character or a vector of characters sepcifying taxa to generate
-an inversed variance-covariance matrix.
-If one single character "all" is given,
-all the taxa included in the \code{taxaTF} will be matched and included ("all" by default).}
-
-\item{tf}{one single character specifying sub taxa to be included in generating
-an inversed variance-covariance matrix}
+\item{phy}{an rooted transcriptome character tree}
 }
 \value{
 returns an inversed variance-covariance matrix
