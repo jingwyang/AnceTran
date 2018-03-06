@@ -5,30 +5,18 @@
 #'
 #' @description This function generate an inversed variance-covariance matrix from expression
 #' or TF-binding profiles of one-to-one orthologous genes across species
-#' @param dismat wait for update
-#' @param tran_table wait for update
-#' @param phy wait for update
-#' @param taxa one single character or a vector of characters sepcifying taxa to generate
-#' an inversed variance-covariance matrix.
-#' If one single character "all" is given,
-#' all the taxa included in the \code{taxaTF} will be matched and included ("all" by default).
-#' @param tf one single character specifying sub taxa to be included in generating
-#' an inversed variance-covariance matrix
-#'
+#' @param dismat a distance matrix for paired transcriptome profiles
+#' @param tran_table transcriptome value matrix
+#' @param phy an rooted transcriptome character tree
 #' @return returns an inversed variance-covariance matrix
 #' @export
-varMatInv = function(dismat , tran_table, phy, taxa = "all", tf) {
+varMatInv = function(dismat , tran_table, phy) {
 
   if (!inherits(phy, "phylo"))
     stop(paste0(date(),"tree input is not of class \"phylo\""))
 
   if (is.null(phy$edge.length))
     stop(paste0(date(),": tree has no branch lengths which is a necessity for \"varMatInv\""))
-
-  if (length(tf) > 1 || tf == "all")
-    stop(paste0(date(),": only one subtaxon are allowed here"))
-
-  #dismat <- expdist(objects, taxa = taxa, subtaxa = subtaxa, method = "sou") ### using -ln(rho) to estimate pairwise expression distance
 
   if (!all(row.names(dismat) %in% phy$tip.label ))
     stop(paste0(date(),": taxa or tf names do not match perfectly with tree tip labels, please check them."))

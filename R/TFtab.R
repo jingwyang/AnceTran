@@ -63,7 +63,7 @@ TFtab = function (objects = NULL, taxa = "all", tf = "all",
 
       } else {
         if (any(grepl(objects[[i]]$taxon.name,taxa,ignore.case=T))
-            ||  any(grepl(objects[[i]]$subTaxon.name, tf, ignore.case=T)))
+            ||  any(grepl(objects[[i]]$tf.name, tf, ignore.case=T)))
         {
           tfbs_table <- cbind(tfbs_table, apply(objects[[i]]$BindingScore.raw, 1, median))
           sample_names <- c(sample_names,
