@@ -1,58 +1,50 @@
 ---
-title: "Vignette Title"
-author: "Vignette Author"
+title: "Guide for Users"
+author: "Jingwen Yang"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Vignette aaa}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
+## Pacakge Installation
+*AnceTran* is an *R* package that performs analyses of transcriptome evolution based on *RNA-seq* expression data or *ChIP-seq* TF binding data. 
+Here, we use HNF4A-binding data for 4 mice species as an example to show how *AnceTran* works. A convenient way to install package from github is through *devtools* package:
 
-- Never uses retina figures
-- Has a smaller default figure size
-- Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
 
-## Vignette Info
 
-Note the various macros within the `vignette` section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
+After installation, *AnceTran* can be loaded in the usual way:
 
-## Styles
 
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
 
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
 
-## Figures
+### Input Format:
 
-The figure sizes have been customised so that you can easily put two images side-by-side. 
+*AnceTran* package takes binding score data in certain format:
 
-```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
+
+- Binding score file should be a text file in the matrix shape, `Rows` correspond to orthologous. `Columns` correspond to sample names. Sample names are in format of "`TaxaName_SubtaxaName_ReplicatesName`". 
+
+The example files are included in the AnceTran package, which can be found in `extdata` folder in the package. One can load them in to take a look:
+
+### Construction:
+
+The construction function `TFconstruct` loads in the BindingScore data file, and wraps them in a list of *taxonTF* objects (one *taxaTF* object).
+
+```{r}
+require('AnceTran')
+TF = tTFConstruct(BSFile = system.file('extdata/HNF4A_meanIntensity_4Mouse.txt', package = 'AnceTran'), taxa="all", tf="all", verbose=FALSE)
+
 ```
 
-You can enable figure captions by `fig_caption: yes` in YAML:
+The construction process takes **several minutes** on a desktop computer depending on data size and hardware performance. Specify **"taxa"** and **"subtaxa"** options in the function when using partial of your data. The construction process will be faster.
+If you are hesitated to test the *AnceTran*, the package has already bundled a constructed object and you can load the object through:
 
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
-
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
-
-## More Examples
-
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
-
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
+```{r}
+data(TF.objects)
 ```
 
-Also a quote using `>`:
+You can take a look at what the loaded objects:
 
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))

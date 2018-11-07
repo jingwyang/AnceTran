@@ -4,8 +4,8 @@
 \alias{Exptab}
 \title{Expression level table extracted from a \code{taxaExp} class}
 \usage{
-Exptab(objects = NULL, taxa = "all", subtaxa = "all", rowindex = NULL,
-  logrithm = TRUE)
+Exptab(objects = NULL, taxa = "all", subtaxa = "all",
+  rowindex = NULL, logrithm = TRUE)
 }
 \arguments{
 \item{objects}{a vector of objects of class \code{taxonExp} or an object of class \code{taxaExp}}

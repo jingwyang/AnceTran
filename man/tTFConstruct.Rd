@@ -4,7 +4,8 @@
 \alias{tTFConstruct}
 \title{Constrct a taxaTF object}
 \usage{
-tTFConstruct(BSFile = NULL, taxa = "all", tf = "all", verbose = FALSE)
+tTFConstruct(BSFile = NULL, taxa = "all", tf = "all",
+  verbose = FALSE)
 }
 \arguments{
 \item{BSFile}{a text file contains raw TF binding score values.

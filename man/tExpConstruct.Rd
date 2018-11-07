@@ -5,8 +5,8 @@
 \title{Construct a taxaExp object}
 \usage{
 tExpConstruct(readCountsFP = NULL, geneInfoFP = NULL, taxa = "all",
-  subtaxa = "all", normalize = c("TPM", "RPKM", "CPM"), rmOut = FALSE,
-  verbose = FALSE)
+  subtaxa = "all", normalize = c("TPM", "RPKM", "CPM"),
+  rmOut = FALSE, verbose = FALSE)
 }
 \arguments{
 \item{readCountsFP}{a text file contains raw read counts data.

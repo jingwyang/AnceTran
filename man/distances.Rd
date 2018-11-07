@@ -13,7 +13,6 @@
 \alias{Expdist.jac}
 \alias{Expdist.ced}
 \alias{Expdist.sou}
-\alias{distances}
 \alias{TFdist.sou}
 \title{Internal functions for estimating pair-wise transcriptome distances}
 \usage{
