@@ -6,6 +6,7 @@ output: md_document
 ---
 
 # AnceTran
+:smile:
 
 *AnceTran* is an *R* package that performs analyses of transcriptome evolution
 based on *RNA-seq* expression data or *ChIP-seq* TF binding data, including optimized input formatting, normalization
