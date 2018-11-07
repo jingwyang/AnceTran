@@ -10,6 +10,7 @@ vignette: >
 ---
 
 ## Pacakge Installation
+
 *AnceTran* is an *R* package that performs analyses of transcriptome evolution based on *RNA-seq* expression data or *ChIP-seq* TF binding data. 
 Here, we use HNF4A-binding data for 4 mice species as an example to show how *AnceTran* works. A convenient way to install package from github is through *devtools* package:
 
@@ -33,10 +34,7 @@ The example files are included in the AnceTran package, which can be found in `e
 
 The construction function `TFconstruct` loads in the BindingScore data file, and wraps them in a list of *taxonTF* objects (one *taxaTF* object).
 
-```{r}
-TF = tTFConstruct(BSFile = system.file('extdata/HNF4A_meanIntensity_4Mouse.txt', package = 'AnceTran'), taxa="all", tf="all", verbose=FALSE)
-TF
-```
+
 
 The construction process takes **several minutes** on a desktop computer depending on data size and hardware performance. Specify **"taxa"** and **"subtaxa"** options in the function when using partial of your data. The construction process will be faster.
 If you are hesitated to test the *AnceTran*, the package has already bundled a constructed object and you can load the object through:
