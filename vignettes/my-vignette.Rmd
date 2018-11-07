@@ -34,9 +34,8 @@ The example files are included in the AnceTran package, which can be found in `e
 The construction function `TFconstruct` loads in the BindingScore data file, and wraps them in a list of *taxonTF* objects (one *taxaTF* object).
 
 ```{r}
-require('AnceTran')
 TF = tTFConstruct(BSFile = system.file('extdata/HNF4A_meanIntensity_4Mouse.txt', package = 'AnceTran'), taxa="all", tf="all", verbose=FALSE)
-
+TF
 ```
 
 The construction process takes **several minutes** on a desktop computer depending on data size and hardware performance. Specify **"taxa"** and **"subtaxa"** options in the function when using partial of your data. The construction process will be faster.
