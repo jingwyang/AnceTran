@@ -6,10 +6,8 @@ output:
   html_document: default
   pdf_document: default
   word_document: default
-vignette: >
-  %\VignetteEngine{knitr::knitr}
-  %\VignetteIndexEntry{Title of your vignette}
-  %\usepackage[UTF-8]{inputenc}
+vignette: |
+  %\VignetteIndexEntry{Vignette Title} %\VignetteEngine{knitr::rmarkdown} %\VignetteEncoding{UTF-8}
 ---
 
 ## Pacakge Installation
