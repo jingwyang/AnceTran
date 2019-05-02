@@ -6,8 +6,10 @@ output:
   html_document: default
   pdf_document: default
   word_document: default
-vignette: |
-  %\VignetteIndexEntry{Vignette aaa} %\VignetteEngine{knitr::rmarkdown} %\VignetteEncoding{UTF-8}
+vignette: >
+  %\VignetteEngine{knitr::knitr}
+  %\VignetteIndexEntry{Title of your vignette}
+  %\usepackage[UTF-8]{inputenc}
 ---
 
 ## Pacakge Installation
@@ -26,7 +28,7 @@ library('AnceTran')
 ```
 
 
-### Input Format:
+## Input Format:
 
 *AnceTran* package takes binding score data in certain format:
 
@@ -41,7 +43,7 @@ BindingScore.table =read.table(system.file('extdata','HNF4A_meanIntensity_4Mouse
 head(BindingScore.table[,1:5])
 ```
      
-### Construction:
+## Construction:
 
 The construction function `TFconstruct` loads in the BindingScore data file, and wraps them in a list of *taxonTF* objects (one *taxaTF* object).
 
@@ -67,7 +69,7 @@ TF_table<-TF_table[keep,]
 TF_table<-data.frame(log2(normalizeQuantiles(TF_table[,])+1))
 ```
 
-### Distance matrix
+## Distance matrix
 First, we generate an TF-binding distance matrix of these mice species using *sOU* method:
 
 ```{r,message=FALSE, warning=FALSE}
@@ -103,12 +105,12 @@ plot(tf_tree, show.node.label = TRUE)
 
 By now, an TF-binding character tree is successfully constructed.
 
-### Creating variance co-variance matrix 
+## Creating variance co-variance matrix 
 ```{r}
 var_mat <- varMatInv(dismat,TF_table,phy = tf_tree)
 ```
 
-### Ancestral TF-binding state estimation
+## Ancestral TF-binding state estimation
 
 Here, we extract the TF-binding values of gene *MUP20* as an example:
 
